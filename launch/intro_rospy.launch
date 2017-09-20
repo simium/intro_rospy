@@ -1,0 +1,28 @@
+<!-- Launches ros_img_processor and two image windows-->
+
+<launch>
+
+    <!-- Webcam and image window for input image -->
+    <include file="$(find intro_rospy)/launch/usb_camera.launch"/>
+
+    <!--Fake processor-->
+    <node name="face_detector"
+        pkg="intro_rospy"
+        type="face_detector.py"
+        output="screen"
+        args="1">
+        <remap from="/image_in" to="/usb_cam/image_raw"/>
+    </node>
+
+    <node name="face_draw"
+        pkg="intro_rospy"
+        type="face_draw.py"
+        output="screen"
+        args="1">
+        <remap from="/image_in" to="/usb_cam/image_raw"/>
+    </node>
+
+    <param name="cascade_xml_file" value="$(find intro_rospy)/xml/haarcascade_frontalface_default.xml" type="str"/>
+
+</launch>
+
