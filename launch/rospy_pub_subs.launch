@@ -1,0 +1,16 @@
+<launch>
+    <node name="publisher"
+        pkg="rospy_pub_subs"
+        type="publisher.py"
+        output="screen"
+        args="1">
+    </node>
+
+    <node name="subscriber"
+        pkg="rospy_pub_subs"
+        type="subscriber.py"
+        output="screen"
+        args="1">
+    </node>
+</launch>
+
